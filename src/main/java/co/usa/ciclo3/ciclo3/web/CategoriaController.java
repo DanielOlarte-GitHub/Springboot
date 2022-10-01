@@ -1,6 +1,8 @@
 package co.usa.ciclo3.ciclo3.web;
 
+import co.usa.ciclo3.ciclo3.model.Categoria;
 import co.usa.ciclo3.ciclo3.model.Papeleria;
+import co.usa.ciclo3.ciclo3.service.CategoriaService;
 import co.usa.ciclo3.ciclo3.service.PapeleriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,27 +12,27 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Papeleria")
+@RequestMapping("/api/Categoria")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class PapeleriaController {
+public class CategoriaController {
 
     @Autowired
-    private PapeleriaService papeleriaService;
+    private CategoriaService categoriaService;
 
     @GetMapping("/all")
-    public List<Papeleria> getPapelerias(){
-        return papeleriaService.getAll();
+    public List<Categoria> getCategorias(){
+        return categoriaService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Papeleria> getPapeleria(@PathVariable("id") int id){
-        return papeleriaService.getPapeleria(id);
+    public Optional<Categoria> getCategoria(@PathVariable("id") int id){
+        return categoriaService.getCategoria(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Papeleria save(@RequestBody Papeleria p){
+    public Categoria save(@RequestBody Categoria c){
 
-        return papeleriaService.save(p);
+        return categoriaService.save(c);
     }
 }
