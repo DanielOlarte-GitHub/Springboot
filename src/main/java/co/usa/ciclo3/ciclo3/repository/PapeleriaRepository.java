@@ -1,5 +1,6 @@
 package co.usa.ciclo3.ciclo3.repository;
 
+import co.usa.ciclo3.ciclo3.model.Categoria;
 import co.usa.ciclo3.ciclo3.model.Papeleria;
 import co.usa.ciclo3.ciclo3.repository.crud.PapeleriaCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,7 @@ public class PapeleriaRepository {
         return papeleriaCrudRepository.save(p);
     }
 
+    public void delete(Papeleria p) {
+        papeleriaCrudRepository.delete(p);
+    }
 }

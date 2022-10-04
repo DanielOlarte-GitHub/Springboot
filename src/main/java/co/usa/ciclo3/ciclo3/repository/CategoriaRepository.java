@@ -14,6 +14,7 @@ public class CategoriaRepository {
     private CategoriaCrudRepository categoriaCrudRepository;
 
     public List<Categoria> getAll(){
+
         return (List<Categoria>) categoriaCrudRepository.findAll();
     }
 
@@ -23,5 +24,9 @@ public class CategoriaRepository {
 
     public Categoria save(Categoria c){
         return categoriaCrudRepository.save(c);
+    }
+
+    public void delete(Categoria c) {
+        categoriaCrudRepository.delete(c);
     }
 }

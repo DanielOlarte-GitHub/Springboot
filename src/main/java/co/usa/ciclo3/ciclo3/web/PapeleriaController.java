@@ -1,5 +1,6 @@
 package co.usa.ciclo3.ciclo3.web;
 
+import co.usa.ciclo3.ciclo3.model.Categoria;
 import co.usa.ciclo3.ciclo3.model.Papeleria;
 import co.usa.ciclo3.ciclo3.service.PapeleriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Papeleria")
+@RequestMapping("/Papeleria")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class PapeleriaController {
 
@@ -32,5 +33,18 @@ public class PapeleriaController {
     public Papeleria save(@RequestBody Papeleria p){
 
         return papeleriaService.save(p);
+    }
+
+    @PutMapping("/actualizar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Papeleria update(@RequestBody Papeleria p){
+
+        return papeleriaService.update(p);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") int id){
+        papeleriaService.delete(id);
     }
 }

@@ -15,6 +15,7 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     public List<Categoria> getAll(){
+
         return categoriaRepository.getAll();
     }
 
@@ -33,5 +34,34 @@ public class CategoriaService {
                 return c;
             }
         }
+    }
+
+    public Categoria update(Categoria c){
+        if(c.getId()!=null){
+            Optional<Categoria> q = categoriaRepository.getCategoria(c.getId());
+            if(q.isPresent()){
+                if(c.getName()!=null){
+                    q.get().setName(c.getName());
+                }
+                categoriaRepository.save(q.get());
+                return q.get();
+            }else{
+                return c;
+            }
+        }else{
+            return c;
+        }
+    }
+
+    public boolean delete(int id){
+        Boolean flag = false;
+
+        Optional<Categoria> q = categoriaRepository.getCategoria(id);
+        if(q.isPresent()){
+            categoriaRepository.delete(q.get());
+            flag = true;
+        }
+
+        return flag;
     }
 }
